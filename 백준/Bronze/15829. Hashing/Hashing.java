@@ -1,36 +1,27 @@
 import java.util.Scanner;
+
 public class Main {
-    // 입력
-    // 5
-    // abcde
-    // 출력
-    // 4739715
-    // 예제 1: abcde의 해시 값은 1 × 31^0 + 2 × 31^1 + 3 × 31^2 + 4 × 31^3 + 5 × 31^4 
-    // = 1 + 62 + 2883 + 119164 + 4617605 = 4739715이다.
-    // 예제 2: zzz의 해시 값은 26 × 310 + 26 × 311 + 26 × 312 = 26 + 806 + 24986 = 25818이다.
-    public static int hashFunction(char c[]) {
-        int sum = 0;
-        for(int i = 0; i < c.length; i++) {
-            int temp = (int)(c[i] - 96);
-            if(i == 0) {
-                sum += temp;
-            } else {
-                sum += temp * Math.pow(31, i);
-            }
+    public static long hashFunction(char c[]) {
+        long sum = 0;
+        long mod = 1234567891;
+        long power = 1; // 31의 거듭제곱값
+
+        for (int i = 0; i < c.length; i++) {
+            long temp = (int)(c[i] - 'a' + 1); // 'a'는 1, 'b'는 2, ..., 'z'는 26
+            sum = (sum + temp * power) % mod; // 현재 해시값에 추가
+            power = (power * 31) % mod; // 다음 거듭제곱 계산
         }
+        
         return sum;
     }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int input = scanner.nextInt();
-        String str = scanner.next();
-        char c[] = new char[str.length()];
+        int input = scanner.nextInt(); // 문자열의 길이
+        String str = scanner.next(); // 문자열 입력
+        char c[] = str.toCharArray(); // 문자열을 문자 배열로 변환
 
-        for(int i = 0; i < str.length(); i++) {
-            c[i] = str.charAt(i);
-        }
-        System.out.println(hashFunction(c));
-        
+        System.out.println(hashFunction(c)); // 해시값 출력
     }
 }
