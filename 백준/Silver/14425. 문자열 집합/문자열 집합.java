@@ -1,8 +1,6 @@
-import java.util.Arrays;
-import java.util.StringTokenizer;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
+import java.lang.*;
+import java.io.*;
+import java.util.*;
 
 public class Main {
     // 총 N개의 문자열로 이루어진 집합 S가 주어진다.
@@ -46,26 +44,20 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
+        HashSet<String> set = new HashSet<String>();
         StringTokenizer st = new StringTokenizer(reader.readLine());
         StringBuilder sb = new StringBuilder();
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
-
-        String arrN[] = new String[N];
-        for (int i = 0; i < N; i++) {
-            arrN[i] = reader.readLine();
-        }
-        String arrM[] = new String[M];
-        for (int i = 0; i < M; i++) {
-            arrM[i] = reader.readLine();
-        }
         int cnt = 0;
+
         for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                if (arrN[i].equals(arrM[j])) {
-                    cnt++;
-                }
+            set.add(reader.readLine());
+        }
+
+        for (int i = 0; i < M; i++) {
+            if (set.contains(reader.readLine())) {
+                cnt++;
             }
         }
         sb.append(cnt);
