@@ -40,8 +40,8 @@ public class Main {
                 apparelMap.put(type, apparelMap.getOrDefault(type, 0) + 1);
             }
             int result = 1;
-            for (Map.Entry<String, Integer> entry : apparelMap.entrySet()) {
-                result *= (entry.getValue() + 1);
+            for (int idx : apparelMap.values()) {
+                result = result * (idx + 1);
             }
             if (i == N-1) {
                 sb.append(result - 1);
