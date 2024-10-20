@@ -48,8 +48,9 @@ public class Main {
         TreeMap<String, Integer> map = new TreeMap<>();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < N; i++) {
-            String str[] = br.readLine().split("\\.");
-            map.put(str[1], map.getOrDefault(str[1], 0) + 1);
+            String str = br.readLine();
+            String string = str.substring(str.indexOf('.') + 1);
+            map.put(string, map.getOrDefault(string, 0) + 1);
         }
         for (String key : map.keySet()) {
             sb.append(key + " ").append(map.get(key)).append('\n');
