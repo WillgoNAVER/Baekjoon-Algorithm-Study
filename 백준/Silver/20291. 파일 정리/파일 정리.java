@@ -46,17 +46,15 @@ public class Main {
 
         int N = Integer.parseInt(br.readLine());
         HashMap<String, Integer> map = new HashMap<>();
-        HashSet<String> set = new HashSet<>();
+        //HashSet<String> set = new HashSet<>();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < N; i++) {
             String str[] = br.readLine().split("\\.");
             map.put(str[1], map.getOrDefault(str[1], 0) + 1);
-            set.add(str[1]);
         }
-        LinkedList<String> list = new LinkedList<>(set);
-        Collections.sort(list);
-        for (String s : list) {
-            sb.append(s + " ").append(map.get(s)).append('\n');
+        TreeMap<String, Integer> sortedMap = new TreeMap<>(map);
+        for (Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
+            sb.append(entry.getKey() + " ").append(entry.getValue()).append('\n');
         }
         System.out.println(sb);
     }
