@@ -45,16 +45,14 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        HashMap<String, Integer> map = new HashMap<>();
-        //HashSet<String> set = new HashSet<>();
+        TreeMap<String, Integer> map = new TreeMap<>();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < N; i++) {
             String str[] = br.readLine().split("\\.");
             map.put(str[1], map.getOrDefault(str[1], 0) + 1);
         }
-        TreeMap<String, Integer> sortedMap = new TreeMap<>(map);
-        for (Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
-            sb.append(entry.getKey() + " ").append(entry.getValue()).append('\n');
+        for (String key : map.keySet()) {
+            sb.append(key + " ").append(map.get(key)).append('\n');
         }
         System.out.println(sb);
     }
